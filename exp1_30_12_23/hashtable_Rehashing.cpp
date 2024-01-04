@@ -70,7 +70,7 @@ public:
         }
         delete[] H;
         H = nH;
-        cout << "Rehashing done. New table size is: " << M << endl;
+        cout << "New table size is: " << M << endl;
     }
 };
 
