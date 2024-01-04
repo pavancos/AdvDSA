@@ -54,7 +54,7 @@ public:
     }
 
     double loadFactor(HASH<T>* H) {
-        return static_cast<double>(Count) / M;
+        return Count/ M;
     }
 
     void rehash(HASH<T>* H) {
