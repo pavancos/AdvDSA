@@ -2,21 +2,28 @@
 #include<vector>
 #include<list>
 #include<algorithm>
-int M=11;
+
 using namespace std;
-
 static int Count;
-
+int M = 11;
 template <typename T>
+bool isprime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}
 class HASH {
 public:
     list<T> L;
+
     int hashing(T k) {
         return (k % M);
     }
 
     void insert(HASH<T>* H, T val) {
-        if (loadFactor(H) > 0.7) {
+        if (loadFactor(H) > 0.5) {
             rehash(H);
         }
         H[hashing(val)].L.push_back(val);
@@ -54,12 +61,15 @@ public:
     }
 
     double loadFactor(HASH<T>* H) {
-        return Count/ M;
+        return Count / M;
     }
 
-    void rehash(HASH<T>* H) {
+    void rehash(HASH<T>*& H) {
         int oM = M;
         M = 2 * M;
+        while (!isprime(M)) {
+            M++;
+        }
         Count = 0;
         HASH<T>* nH = new HASH<T>[M];
         for (int i = 0; i < oM; i++) {
@@ -75,7 +85,7 @@ public:
 };
 
 int main() {
-    HASH<int> H[M];
+    HASH<int>* H = new HASH<int>[M];
     int ch;
     do {
         cout << "MENU:\n1)Insert\t2)Delete\n3)Search\t4)Size\n5)Display\t0)Exit\n";
@@ -103,4 +113,7 @@ int main() {
             default: break;
         }
     } while (ch);
+
+    delete[] H;
+    return 0;
 }
