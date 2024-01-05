@@ -1,12 +1,12 @@
-#include<iostream>
-#include<vector>
-#include<list>
-#include<algorithm>
+#include <iostream>
+#include <vector>
+#include <list>
+#include <algorithm>
 
 using namespace std;
+
 static int Count;
 int M = 11;
-template <typename T>
 bool isprime(int n) {
     if (n <= 1) return false;
     for (int i = 2; i * i <= n; i++) {
@@ -14,6 +14,8 @@ bool isprime(int n) {
     }
     return true;
 }
+
+template <typename T>
 class HASH {
 public:
     list<T> L;
