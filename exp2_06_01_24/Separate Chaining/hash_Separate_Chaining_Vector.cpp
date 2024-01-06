@@ -3,7 +3,7 @@
 #include<algorithm>
 #define M 11
 using namespace std;
-
+static int Count;
 template <typename T>
 class HASH{
 public:

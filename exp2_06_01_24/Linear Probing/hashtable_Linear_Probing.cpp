@@ -3,29 +3,46 @@
 #include<algorithm>
 #define M 11
 using namespace std;
-static int Count;
+static int Count,C;
 template <typename T>
 class HASH{
 public:
-    vector<T> L;
+    T value;
     int hashing(T k){
         return (k%M);
     }
     void insert(HASH<T> *H, T val){
-        H->L.push_back(val);
-        Count++;
-        H->display(H);
+        if(H[hashing(val)].value==-1){
+            H[hashing(val)].value=val;
+            Count++;
+            H->display(H);
+            return;
+        }
+        else{
+            C++;
+            if(H[hashing(hashing(val)+C)].value==-1){
+                H[hashing(hashing(val)+C)].value=val;
+                Count++;
+                H->display(H);
+                return;
+            }
+            else
+                insert(&H[1], val);
+        }
     }
     void dlt(HASH<T> *H, T val){
-        remove(H->L.begin(), H->L.end(), val);
+        for(int i=0;i<M;i++)
+            if(H[i].value==val)
+                H[i].value=-1;
         H->display(H);
     }
     void search(HASH<T> *H, T val){
-        int key = hashing(val);
-        auto it = find(H->L.begin(), H->L.end(), val);
-        if (it != H->L.end()){
-            cout << "Element found at key: " << key << endl;
-        }
+        int key = hashing(val),coll=0;
+        for(int i=0;i<M;i++)
+            if(H[hashing((val)+coll)].value!=val)
+                coll++;
+        if (H[hashing(hashing(val)+coll)].value==val)
+            cout << "Element of key: " << key <<" is present at: "<<hashing(hashing(val)+coll)<< endl;
         else
             cout << "Element not found.\n";
     }
@@ -35,16 +52,17 @@ public:
     void display(HASH<T> *H){
         for (int i = 0; i < M; i++){
             cout << i << ":  ";
-            for (auto v : H->L){
-                cout << v << " -> ";
-            }
+            if(H[i].value!=-1)
+                cout<<H[i].value;
             cout << endl;
         }
     }
 };
 
 int main(){
-    HASH<int> H[M];
+    HASH<int> H[M+1];
+    for(int i=0;i<M+1;i++)
+        H[i].value=-1;
     int ch;
     do{
         cout << "MENU:\n1)Insert\t2)Delete\n3)Search\t4)Size\n5)Display\t0)Exit\n";
