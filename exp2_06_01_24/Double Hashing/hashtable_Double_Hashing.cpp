@@ -40,6 +40,8 @@ public:
         int key = hashing(val),coll=0;
         if (H[doublehashing(val)].value==val)
             cout << "Element of key: " << key <<" is present at: "<<doublehashing(val)<< endl;
+        else if(H[key].value==val)
+            cout << "Element of key: " << key <<" is present at: "<<key<< endl;
         else
             cout << "Element not found.\n";
     }

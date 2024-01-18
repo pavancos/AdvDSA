@@ -2,7 +2,6 @@
 #include <unordered_map>
 #include <vector>
 using namespace std;
-
 int main() {
     vector<int> arr;
     cout << "Enter the number of elements to be inserted: ";
