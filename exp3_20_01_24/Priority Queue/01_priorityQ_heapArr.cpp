@@ -61,7 +61,7 @@ int main(){
             break;
             
             case 2:
-                int i=Delete(MaxHeap,i);
+                int i=Delete(MaxHeap);
                 cout<<"Popped: "<<i<<endl;
             break;
             
