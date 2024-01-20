@@ -45,11 +45,18 @@ int Delete(vector<int>& heap) {
     return max;
 }
 
+void Display(vector<int>& heap) {
+    cout << "Priority Queue: ";
+    for (int val : heap)
+        cout << val << " ";
+    cout << "\n";
+}
+
 
 int main(){
     vector<int>MaxHeap;int f=1;
     do{
-        cout<<"1)Insert  2)Delete  3)Merge  4)Exit\n";
+        cout<<"1)Insert  2)Delete  3)Merge\n4)Display  5)Exit\n";
         int ch;
         cin>>ch;
         switch(ch){
@@ -61,11 +68,15 @@ int main(){
             break;
             
             case 2:
-                int i=Delete(MaxHeap);
+                i=Delete(MaxHeap);
                 cout<<"Popped: "<<i<<endl;
             break;
             
             case 4:
+                Display(MaxHeap);
+            break;
+
+            case 5:
                 f=0;
             break;
         }
