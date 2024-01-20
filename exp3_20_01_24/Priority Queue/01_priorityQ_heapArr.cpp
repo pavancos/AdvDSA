@@ -69,5 +69,5 @@ int main(){
                 f=0;
             break;
         }
-    }while(f)
+    }while(f);
 }
