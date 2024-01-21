@@ -45,6 +45,15 @@ int Delete(vector<int>& heap) {
     return max;
 }
 
+vector<int> merge(vector<int> &heap1, vector<int> &heap2){
+    vector<int> mergedHeap;
+    mergedHeap.reserve(heap1.size() + heap2.size());
+    mergedHeap.insert(mergedHeap.end(), heap1.begin(), heap1.end());
+    mergedHeap.insert(mergedHeap.end(), heap2.begin(), heap2.end());
+    make_heap(mergedHeap.begin(), mergedHeap.end());
+    return mergedHeap;
+}
+
 void Display(vector<int>& heap) {
     cout << "Priority Queue: ";
     for (int val : heap)
@@ -70,6 +79,21 @@ int main(){
             case 2:
                 i=Delete(MaxHeap);
                 cout<<"Popped: "<<i<<endl;
+            break;
+            
+            case 3:{
+                vector<int> anotherHeap;
+                int j;
+                cout << "Enter the number of elements: ";
+                cin >> j;
+                cout << "Enter the elements:\n";
+                for (int i = 0; i < j; i++){
+                    int e;
+                    cin >> e;
+                    anotherHeap.push_back(e);
+                }
+                MaxHeap = merge(MaxHeap, anotherHeap);
+            }
             break;
             
             case 4:
