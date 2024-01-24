@@ -46,12 +46,10 @@ int Delete(vector<int>& heap) {
 }
 
 vector<int> merge(vector<int> &heap1, vector<int> &heap2){
-    vector<int> mergedHeap;
-    mergedHeap.reserve(heap1.size() + heap2.size());
-    mergedHeap.insert(mergedHeap.end(), heap1.begin(), heap1.end());
-    mergedHeap.insert(mergedHeap.end(), heap2.begin(), heap2.end());
-    make_heap(mergedHeap.begin(), mergedHeap.end());
-    return mergedHeap;
+    heap1.reserve(heap1.size() + heap2.size());
+    for(int i=0;i<heap2.size();i++)
+        Insert(heap1,Delete(heap2));
+    return heap1;
 }
 
 void Display(vector<int>& heap) {
