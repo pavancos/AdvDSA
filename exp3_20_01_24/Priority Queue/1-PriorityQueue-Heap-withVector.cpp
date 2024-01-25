@@ -44,7 +44,6 @@ int Delete(vector<int>& heap) {
 }
 
 vector<int> merge(vector<int> &heap1, vector<int> &heap2){
-    heap1.reserve(heap1.size() + heap2.size());
     for(int i=0;i<heap2.size();i++)
         Insert(heap1,Delete(heap2));
     return heap1;
