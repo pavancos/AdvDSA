@@ -32,10 +32,8 @@ void Insert(vector<int>& heap, int val) {
 }
 
 int Delete(vector<int>& heap) {
-    if (heap.empty()) {
+    if (heap.empty())
         return -1;
-    }
-
     int max = heap[0];
     heap[0] = heap.back();
     heap.pop_back();
@@ -88,7 +86,7 @@ int main(){
                 for (int i = 0; i < j; i++){
                     int e;
                     cin >> e;
-                    anotherHeap.push_back(e);
+                    Insert(anotherHeap,e);
                 }
                 MaxHeap = merge(MaxHeap, anotherHeap);
             }
