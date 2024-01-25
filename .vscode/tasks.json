@@ -5,8 +5,6 @@
             "label": "C/C++: g++ build active file",
             "command": "/usr/bin/g++",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
                 "${file}",
                 "-o",
                 "${fileDirname}/22501A05E0-Outputs/${fileBasenameNoExtension}"
