@@ -69,5 +69,5 @@ int main(){
     for(int i=0;i<k;i++){
         Kth=Delete(MaxHeap);
     }
-    cout<<k<<"th Element: "<<Kth<<endl;
+    cout<<k<<"-th Element: "<<Kth<<endl;
 }
