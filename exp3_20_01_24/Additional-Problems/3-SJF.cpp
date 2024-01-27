@@ -36,9 +36,7 @@ void SJF(pinfo *a)
         }
     }
     int RunT = a[0].Atime;
-
     priority_queue<pinfo, vector<pinfo>, cmpBtime> RUN;
-    priority_queue<pinfo, vector<pinfo>, cmpBtime> pq;
     int temp = a[0].Atime;
     RUN.push(a[0]);
     a[0].Atime = -1;
@@ -75,9 +73,8 @@ int main()
     a[1] = {"p2", 0, 8};
     a[2] = {"p3", 5, 4};
     a[3] = {"p4", 9, 2};
-    cout << "Schedeuled Jobs ";
-    cout << "\n"
-         << endl;
+    cout << "Schedeuled Jobs :";
+    cout << endl;
     SJF(a);
     cout<<endl;
 }
