@@ -137,12 +137,7 @@ class AVL{
 int main(){
     AVL<float> t;
     t.insert(1.3);
-    t.insert(2.4);
-    t.insert(3.5);
-    t.insert(4.6);
-    t.insert(5.7);
-    t.insert(6.8);
-    t.insert(7.9);
+    t.insert(2.4);t.insert(3.5);t.insert(4.6);t.insert(5.7);t.insert(6.8);t.insert(7.9);
     t.inorder();
     t.remove(5.7);
     t.remove(6.8);
