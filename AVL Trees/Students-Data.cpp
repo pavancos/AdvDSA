@@ -1,57 +1,49 @@
 #include <iostream>
 #include <map>
 #include <string>
-
 using namespace std;
-
-struct Student
-{
-    int rollNo;
+struct stud{
+    int roll;
     string name;
-    string classId;
+    string Class;
 };
-
-class AVLTree
-{
-    map<int, Student> tree;
+class AVL{
+    map<int, stud> T;
 
 public:
-    void insert(Student student)
-    {
-        tree[student.rollNo] = student;
+    void insert(stud stud){
+        T[stud.roll] = stud;
     }
 
-    void search(int rollNo)
-    {
-        if (tree.find(rollNo) != tree.end())
-        {
-            Student s = tree[rollNo];
+    void search(int roll){
+        if (T.find(roll) != T.end()){
+            stud s = T[roll];
             cout << "Name: " << s.name << endl;
-            cout << "Class: " << s.classId << endl;
+            cout << "Class: " << s.Class << endl;
         }
         else
-        {
-            cout << "No student found with roll number " << rollNo << endl;
-        }
+            cout << "No student found" << roll << endl;
     }
 };
-
-int main()
-{
-    AVLTree tree;
-
-    Student s1 = {1, "John", "10A"};
-    Student s2 = {2, "Sarah", "10B"};
-    // Add more students
-
-    tree.insert(s1);
-    tree.insert(s2);
-
-    int rollNo;
-    cout << "Enter roll number to search: ";
-    cin >> rollNo;
-
-    tree.search(rollNo);
-
+int main(){
+    AVL T;
+    stud students[10] = {
+        {1, "tony", "10A"},
+        {2, "steve", "10B"},
+        {3, "bruce", "10A"},
+        {4, "natasha", "10B"},
+        {5, "clint", "10C"},
+        {6, "wanda", "10A"},
+        {7, "vision", "10B"},
+        {8, "thor", "10C"},
+        {9, "peter", "10A"},
+        {10, "carol", "10C"}
+    };
+    for (int i = 0; i < 10; ++i)
+        T.insert(students[i]);
+    int r;
+    cout << "enter a roll: ";
+    cin >> r;
+    T.search(r);
     return 0;
 }
