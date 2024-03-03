@@ -20,15 +20,15 @@
         },
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe build active file",
-            "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+            "label": "C/C++: g++-9 build active file",
+            "command": "/usr/bin/g++-9",
             "args": [
                 "${file}",
                 "-o",
                 "${fileDirname}/22501A05E0-Outputs/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "C:\\msys64\\ucrt64\\bin"
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"
