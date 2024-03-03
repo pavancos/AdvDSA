@@ -48,5 +48,6 @@
     "cinttypes": "cpp",
     "typeinfo": "cpp",
     "xutility": "cpp"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
