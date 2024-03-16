@@ -40,6 +40,8 @@ public:
 			cout << Stack.top() << " ";
 			Stack.pop();
 		}
+		cout<<endl;
+		
 	}
 };
 int main(){
