@@ -3,12 +3,10 @@
 #include <list>
 #include <stack>
 using namespace std;
-class Graph
-{
+class Graph{
 	int V;
 	list<int> *adj;
-	void topologicalSortUtil(int v, bool visited[], stack<int> &Stack)
-	{
+	void topologicalSortUtil(int v, bool visited[], stack<int> &Stack){
 		visited[v] = true;
 		list<int>::iterator i;
 		for (i = adj[v].begin(); i != adj[v].end(); ++i)
@@ -18,17 +16,14 @@ class Graph
 	}
 
 public:
-	Graph(int V)
-	{
+	Graph(int V){
 		this->V = V;
 		adj = new list<int>[V];
 	}
-	void addEdge(int v, int w)
-	{
+	void addEdge(int v, int w){
 		adj[v].push_back(w);
 	}
-	void topologicalSort()
-	{
+	void topologicalSort(){
 		stack<int> Stack;
 		bool *visited = new bool[V];
 		for (int i = 0; i < V; i++)
@@ -41,7 +36,6 @@ public:
 			Stack.pop();
 		}
 		cout<<endl;
-
 	}
 };
 int main(){
