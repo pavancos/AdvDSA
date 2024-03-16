@@ -41,18 +41,18 @@ public:
 			Stack.pop();
 		}
 		cout<<endl;
-		
+
 	}
 };
 int main(){
-	Graph g(6);
-	g.addEdge(5, 2);
-	g.addEdge(5, 0);
-	g.addEdge(4, 0);
-	g.addEdge(4, 1);
-	g.addEdge(2, 3);
-	g.addEdge(3, 1);
+	Graph G(6);
+	G.addEdge(5, 2);
+	G.addEdge(5, 0);
+	G.addEdge(4, 0);
+	G.addEdge(4, 1);
+	G.addEdge(2, 3);
+	G.addEdge(3, 1);
 	cout << "Topological Sort: ";
-	g.topologicalSort();
+	G.topologicalSort();
 	return 0;
 }
