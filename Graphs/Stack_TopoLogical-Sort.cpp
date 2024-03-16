@@ -1,4 +1,3 @@
-// A C++ program to print topological sorting of a DAG
 #include <iostream>
 #include <list>
 #include <stack>
