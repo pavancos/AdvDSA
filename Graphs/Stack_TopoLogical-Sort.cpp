@@ -36,15 +36,13 @@ public:
 		for (int i = 0; i < V; i++)
 			if (visited[i] == false)
 				topologicalSortUtil(i, visited, Stack);
-		while (Stack.empty() == false)
-		{
+		while (Stack.empty() == false){
 			cout << Stack.top() << " ";
 			Stack.pop();
 		}
 	}
 };
-int main()
-{
+int main(){
 	Graph g(6);
 	g.addEdge(5, 2);
 	g.addEdge(5, 0);
@@ -52,7 +50,7 @@ int main()
 	g.addEdge(4, 1);
 	g.addEdge(2, 3);
 	g.addEdge(3, 1);
-	cout << "Following is a Topological Sort of the given graph: ";
+	cout << "Topological Sort: ";
 	g.topologicalSort();
 	return 0;
 }
