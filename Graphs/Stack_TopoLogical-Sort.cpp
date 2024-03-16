@@ -9,12 +9,10 @@ class Graph{
 		visited[v] = true;
 		list<int>::iterator i;
 		for (i = adj[v].begin(); i != adj[v].end(); ++i)
-			if (!visited[*i])
-				topologicalSortUtil(*i, visited, Stack);
+			if (!visited[*i])	topologicalSortUtil(*i, visited, Stack);
 		Stack.push(v);
 	}
-
-public:
+   public:
 	Graph(int V){
 		this->V = V;
 		adj = new list<int>[V];
@@ -39,12 +37,12 @@ public:
 };
 int main(){
 	Graph G(6);
-	G.addEdge(5, 2);
-	G.addEdge(5, 0);
-	G.addEdge(4, 0);
-	G.addEdge(4, 1);
-	G.addEdge(2, 3);
-	G.addEdge(3, 1);
+	G.addEdge(55, 27);
+	G.addEdge(55, 10);
+	G.addEdge(40, 10);
+	G.addEdge(40, 1);
+	G.addEdge(27, 37);
+	G.addEdge(37, 1);
 	cout << "Topological Sort: ";
 	G.topologicalSort();
 	return 0;
