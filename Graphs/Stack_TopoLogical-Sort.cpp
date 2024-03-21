@@ -41,7 +41,6 @@ public:
 			Stack.pop();
 		}
 		cout<<endl;
-		
 	}
 };
 int main(){
