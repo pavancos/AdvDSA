@@ -22,7 +22,7 @@ void apsp(int g[][V]){
                 if (g[i][j] > (g[i][k] + g[k][j]) && (g[k][j] != INF && g[i][k] != INF))
                     g[i][j] = g[i][k] + g[k][j];
     print(g);
-
+}
 int main(){
     int graph[V][V] = {
         {0, 2, 7, INF, INF},
