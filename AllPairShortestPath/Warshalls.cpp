@@ -5,6 +5,9 @@ using namespace std;
 void addEdge(int g[][V],int i,int j,int w){
     g[i][j]=w;
 }
+void graphInit(int g[][V]){
+    for(int i=0;i<N;i++) g[i][i]=0;
+}
 void print(int g[][V]){
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
@@ -34,7 +37,8 @@ int main(){
     //     {INF, 5, 1, 0, INF},
     //     {INF, INF, INF, 3, 0}
     // };
-    int graph[V][V];
+    int graph[V][V]={INF};
+    graphInit(graph);
     cout<<"Enter The Vertices (Src-Dest-Wt)\n";
     for(int i=0;i<V*V;i++){
         int s,d,w;
