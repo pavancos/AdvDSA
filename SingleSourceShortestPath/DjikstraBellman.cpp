@@ -8,7 +8,6 @@ class Graph {
 private:
     int V;
     vector<vector<int>> adj;
-
 public:
     Graph(int V) : V(V) {
         adj.resize(V, vector<int>(V, INF));
