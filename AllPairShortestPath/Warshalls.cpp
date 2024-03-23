@@ -2,6 +2,9 @@
 using namespace std;
 #define V 5
 #define INF INT_MAX
+void addEdge(int g[][V],int i,int j,int w){
+    g[i][j]=w;
+}
 void print(int g[][V]){
     for (int i = 0; i < V; i++) {
         for (int j = 0; j < V; j++) {
@@ -24,13 +27,20 @@ void apsp(int g[][V]){
     print(g);
 }
 int main(){
-    int graph[V][V] = {
-        {0, 2, 7, INF, INF},
-        {5, 0, INF, 7, 4},
-        {3, INF, 0, 6, INF},
-        {INF, 5, 1, 0, INF},
-        {INF, INF, INF, 3, 0}
-    };
+    // int graph[V][V] = {
+    //     {0, 2, 7, INF, INF},
+    //     {5, 0, INF, 7, 4},
+    //     {3, INF, 0, 6, INF},
+    //     {INF, 5, 1, 0, INF},
+    //     {INF, INF, INF, 3, 0}
+    // };
+    int graph[V][V];
+    cout<<"Enter The Vertices (Src-Dest-Wt)\n";
+    for(int i=0;i<V*V;i++){
+        int s,d,w;
+        cin>>s>>d>>w;
+        addEdge(graph,s,d,w);
+    }
     print(graph);
     cout<<"\nAll Pair Shortest Path:\n";
     apsp(graph);
