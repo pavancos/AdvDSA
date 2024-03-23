@@ -43,7 +43,8 @@ int main(){
     for(int i=0;i<V*V;i++){
         int s,d,w;
         cin>>s>>d>>w;
-        addEdge(graph,s-1,d-1,w);
+        if(w<0) addEdge(graph,s-1,d-1,INF);
+        else addEdge(graph,s-1,d-1,w;
     }
     print(graph);
     cout<<"\nAll Pair Shortest Path:\n";
