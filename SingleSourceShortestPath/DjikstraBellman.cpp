@@ -2,32 +2,20 @@
 #include <vector>
 #include <queue>
 #include <climits>
-
 using namespace std;
-
 #define INF INT_MAX
-
-struct Vertex {
-    int id;
-    int weight;
-    Vertex(int _id, int _weight) : id(_id), weight(_weight) {}
-};
-
-struct Edge {
-    int src, dest, weight;
-    Edge(int _src, int _dest, int _weight) : src(_src), dest(_dest), weight(_weight) {}
-};
-
 class Graph {
 private:
     int V;
-    vector<Edge> edges;
+    vector<vector<int>> adj;
 
 public:
-    Graph(int V) : V(V) {}
+    Graph(int V) : V(V) {
+        adj.resize(V, vector<int>(V, INF));
+    }
 
     void addEdge(int src, int dest, int weight) {
-        edges.push_back(Edge(src, dest, weight));
+        adj[src][dest] = weight;
     }
 
     vector<int> dijkstra(int source) {
@@ -43,10 +31,9 @@ public:
 
             if (d > dist[u]) continue;
 
-            for (const auto& edge : edges) {
-                if (edge.src == u) {
-                    int v = edge.dest;
-                    int w = edge.weight;
+            for (int v = 0; v < V; ++v) {
+                if (adj[u][v] != INF) {
+                    int w = adj[u][v];
                     if (dist[u] + w < dist[v]) {
                         dist[v] = dist[u] + w;
                         pq.push({dist[v], v});
@@ -63,23 +50,27 @@ public:
         dist[source] = 0;
 
         for (int i = 0; i < V - 1; ++i) {
-            for (const auto& edge : edges) {
-                int u = edge.src;
-                int v = edge.dest;
-                int w = edge.weight;
-                if (dist[u] != INF && dist[u] + w < dist[v]) {
-                    dist[v] = dist[u] + w;
+            for (int u = 0; u < V; ++u) {
+                for (int v = 0; v < V; ++v) {
+                    if (adj[u][v] != INF) {
+                        int w = adj[u][v];
+                        if (dist[u] != INF && dist[u] + w < dist[v]) {
+                            dist[v] = dist[u] + w;
+                        }
+                    }
                 }
             }
         }
 
-        for (const auto& edge : edges) {
-            int u = edge.src;
-            int v = edge.dest;
-            int w = edge.weight;
-            if (dist[u] != INF && dist[u] + w < dist[v]) {
-                cout << "Graph contains negative-weight cycle\n";
-                return {};
+        for (int u = 0; u < V; ++u) {
+            for (int v = 0; v < V; ++v) {
+                if (adj[u][v] != INF) {
+                    int w = adj[u][v];
+                    if (dist[u] != INF && dist[u] + w < dist[v]) {
+                        cout << "Graph contains negative-weight cycle\n";
+                        return {};
+                    }
+                }
             }
         }
 
@@ -88,30 +79,36 @@ public:
 };
 
 int main() {
-    Graph g(5);
+    Graph gDijkstra(5);
+    gDijkstra.addEdge(0, 1, 4);
+    gDijkstra.addEdge(0, 2, 1);
+    gDijkstra.addEdge(1, 2, 2);
+    gDijkstra.addEdge(1, 3, 5);
+    gDijkstra.addEdge(2, 3, 2);
+    gDijkstra.addEdge(2, 4, 1);
+    gDijkstra.addEdge(3, 4, 3);
 
-    g.addEdge(0, 1, 4);
-    g.addEdge(0, 2, 1);
-    g.addEdge(1, 2, 2);
-    g.addEdge(1, 3, 5);
-    g.addEdge(2, 3, 2);
-    g.addEdge(2, 4, 1);
-    g.addEdge(3, 4, 3);
+    Graph gBellmanFord(5);
+    gBellmanFord.addEdge(0, 1, -4);
+    gBellmanFord.addEdge(0, 2, 1);
+    gBellmanFord.addEdge(1, 2, -2);
+    gBellmanFord.addEdge(1, 3, -5);
+    gBellmanFord.addEdge(2, 3, 2);
+    gBellmanFord.addEdge(2, 4, -1);
+    gBellmanFord.addEdge(3, 4, 3);
 
-    int source = 0;
+    int src = 0;
 
-    vector<int> dijkstraDistances = g.dijkstra(source);
-    cout << "Shortest distances from vertex " << source << " using Dijkstra's algorithm:\n";
-    for (int i = 0; i < dijkstraDistances.size(); ++i) {
+    vector<int> dijkstraDistances = gDijkstra.dijkstra(src);
+    cout << "Starting vertex " << src << ", Dijkstra's:\n";
+    for (int i = 0; i < dijkstraDistances.size(); ++i)
         cout << "Vertex " << i << ": " << dijkstraDistances[i] << "\n";
-    }
 
-    vector<int> bellmanFordDistances = g.bellmanFord(source);
+    vector<int> bellmanFordDistances = gBellmanFord.bellmanFord(src);
     if (!bellmanFordDistances.empty()) {
-        cout << "\nShortest distances from vertex " << source << " using Bellman-Ford algorithm:\n";
-        for (int i = 0; i < bellmanFordDistances.size(); ++i) {
+        cout << "\nStarting vertex " << src << ", Bellman-Ford:\n";
+        for (int i = 0; i < bellmanFordDistances.size(); ++i)
             cout << "Vertex " << i << ": " << bellmanFordDistances[i] << "\n";
-        }
     }
 
     return 0;
